@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @GetMapping("/all-admin")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    //@PreAuthorize("hasAuthority('Admin')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('Admin')")
     public String getAll(){
         return "Secured link admin";
     }

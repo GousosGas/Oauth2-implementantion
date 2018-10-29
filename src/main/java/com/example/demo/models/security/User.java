@@ -58,7 +58,7 @@ public class User implements UserDetails {
 
     /*
      * Get roles and permissions and add them as a Set of GrantedAuthority
-     */
+     *//*
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
@@ -68,7 +68,26 @@ public class User implements UserDetails {
         );
 
         return authorities;
+    }*/
+
+    /*
+	 * Get roles and permissions and add them as a Set of GrantedAuthority
+	 */
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+
+        roles.forEach(r -> {
+            authorities.add(new SimpleGrantedAuthority(r.getName()));
+
+            r.getPermissions().forEach(p -> {
+                authorities.add(new SimpleGrantedAuthority(p.getName()));
+            });
+        });
+
+        return authorities;
     }
+
 
     @Override
     public String getPassword() {
